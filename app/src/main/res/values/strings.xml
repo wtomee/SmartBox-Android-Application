@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SmartBox_app_menu</string>
+    <string name="mainTitle">SmartBox</string>
+    <!--<string name="tempCardText">Hőmérséklet és Páratartalom</string>
+    <string name="flameCardText">Tűzérzékelő</string>
+    <string name="soundCardText">Hangérzékelő</string>
+    <string name="infoCardText">Info</string>-->
+    <string name="flameString">A tűzérzékelő aktív.</string>
+    <string name="flameStringOff">A tűzérzékelő nem aktív.</string>
+</resources>
