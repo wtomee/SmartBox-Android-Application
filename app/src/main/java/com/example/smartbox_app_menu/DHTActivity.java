@@ -110,7 +110,7 @@ public class DHTActivity extends AppCompatActivity {
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    Toast.makeText(DHTActivity.this, "Connected", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DHTActivity.this, "Kapcsolódva", Toast.LENGTH_LONG).show();
                     subHum();
                     subTemp();
                     LineData data = new LineData();
@@ -120,7 +120,7 @@ public class DHTActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Toast.makeText(DHTActivity.this, "Not Connected", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DHTActivity.this, "Nem sikerült a kapcsolódás", Toast.LENGTH_LONG).show();
 
                 }
             });

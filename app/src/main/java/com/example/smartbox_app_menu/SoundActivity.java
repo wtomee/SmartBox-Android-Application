@@ -104,7 +104,7 @@ public class SoundActivity extends AppCompatActivity {
                 token.setActionCallback(new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken asyncActionToken) {
-                        Toast.makeText(SoundActivity.this, "Connected", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SoundActivity.this, "Kapcsolódva", Toast.LENGTH_LONG).show();
                         subSound();
                         LineData data = new LineData();
                         soundLineChart.setData(data);
@@ -113,7 +113,7 @@ public class SoundActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                        Toast.makeText(SoundActivity.this, "Not Connected", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SoundActivity.this, "Nem sikerült a kapcsolódás", Toast.LENGTH_LONG).show();
 
                     }
                 });

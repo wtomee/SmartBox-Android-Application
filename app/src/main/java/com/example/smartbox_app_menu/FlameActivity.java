@@ -48,14 +48,14 @@ public class FlameActivity extends AppCompatActivity {
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    Toast.makeText(FlameActivity.this, "Connected", Toast.LENGTH_LONG).show();
+                    Toast.makeText(FlameActivity.this, "Kapcsolódva", Toast.LENGTH_LONG).show();
                     sub();
                     flameString.setVisibility(View.VISIBLE);
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Toast.makeText(FlameActivity.this, "Not Connected", Toast.LENGTH_LONG).show();
+                    Toast.makeText(FlameActivity.this, "Nem sikerült a kapcsolódás", Toast.LENGTH_LONG).show();
                     flameString.setText(R.string.flameStringOff);
                     flameString.setVisibility(View.VISIBLE);
 
