@@ -22,7 +22,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class FlameActivity extends AppCompatActivity {
     MqttAndroidClient client;
-    String topicStr = "feed/flame";
+    String topicStr = "feed/flame_sensor";
     //TextView subText;
     String number;
     TextView flameString;
@@ -40,11 +40,12 @@ public class FlameActivity extends AppCompatActivity {
 
         //subText = (TextView) findViewById(R.id.subText);
         String clientId = MqttClient.generateClientId();
-        client = new MqttAndroidClient(this.getApplicationContext(), "tcp://192.168.2.80:1883", clientId);
+        client = new MqttAndroidClient(this.getApplicationContext(), "tcp://172.20.16.134:1883", clientId);
         MqttConnectOptions options = new MqttConnectOptions();
-
+        //options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
+        options.setAutomaticReconnect(true);
         try {
-            IMqttToken token = client.connect();
+            IMqttToken token = client.connect(options);
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {

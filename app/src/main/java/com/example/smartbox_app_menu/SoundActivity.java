@@ -30,7 +30,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class SoundActivity extends AppCompatActivity {
 
         MqttAndroidClient client;
-        String soundTopic = "feed/sound";
+        String soundTopic = "feed/sound_sensor";
 //    TextView subText, subText2;
         LineChart soundLineChart;
 
@@ -96,11 +96,12 @@ public class SoundActivity extends AppCompatActivity {
 
             //MQTT
             String clientId = MqttClient.generateClientId();
-            client = new MqttAndroidClient(this.getApplicationContext(), "tcp://192.168.2.80:1883", clientId);
+            client = new MqttAndroidClient(this.getApplicationContext(), "tcp://172.20.16.134:1883", clientId);
             MqttConnectOptions options = new MqttConnectOptions();
+            options.setAutomaticReconnect(true);
 
             try {
-                IMqttToken token = client.connect();
+                IMqttToken token = client.connect(options);
                 token.setActionCallback(new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken asyncActionToken) {
