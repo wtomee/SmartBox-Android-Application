@@ -35,8 +35,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class DHTActivity extends AppCompatActivity {
 
     MqttAndroidClient client;
-    String tempTopic = "feed/temp";
-    String humTopic = "feed/hum";
+    String tempTopic = "feed/dht11_sensor/temp";
+    String humTopic = "feed/dht11_sensor/hum";
 //    TextView subText, subText2;
     LineChart dhtLineChart;
 
@@ -67,7 +67,7 @@ public class DHTActivity extends AppCompatActivity {
         yAxis.setTextSize(10f);
         yAxis.setTextColor(Color.BLACK);
         yAxis.setAxisMinimum(0f); // 0 min
-        yAxis.setAxisMaximum(45f); // 45max
+        yAxis.setAxisMaximum(100f); // 45max
         dhtLineChart.getAxisRight().setEnabled(false);
 
         //XAxis
@@ -102,11 +102,12 @@ public class DHTActivity extends AppCompatActivity {
 
         //MQTT
         String clientId = MqttClient.generateClientId();
-        client = new MqttAndroidClient(this.getApplicationContext(), "tcp://192.168.2.80:1883", clientId);
+        client = new MqttAndroidClient(this.getApplicationContext(), "tcp://172.20.16.134:1883", clientId);
         MqttConnectOptions options = new MqttConnectOptions();
+        options.setAutomaticReconnect(true);
 
         try {
-            IMqttToken token = client.connect();
+            IMqttToken token = client.connect(options);
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
@@ -120,8 +121,10 @@ public class DHTActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Toast.makeText(DHTActivity.this, "Nem sikerült a kapcsolódás", Toast.LENGTH_LONG).show();
-
+                    //exception.printStackTrace();
+                    Toast.makeText(DHTActivity.this, "", Toast.LENGTH_LONG).show();
+                    //Log.d("ASD", exception.getMessage());
+                    //exception.printStackTrace();
                 }
             });
         } catch (MqttException e) {
